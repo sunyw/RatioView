@@ -63,12 +63,14 @@ public class RatioImageView extends ImageView implements RatioMeasureDelegate {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if(mRatioLayoutDelegate != null){
             mRatioLayoutDelegate.onMeasure(widthMeasureSpec,heightMeasureSpec);
             widthMeasureSpec = mRatioLayoutDelegate.getWidthMeasureSpec();
             heightMeasureSpec = mRatioLayoutDelegate.getHeightMeasureSpec();
+        } else {
+            setMeasuredDimension(getMeasuredWidth(), getMeasuredHeight());
         }
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
